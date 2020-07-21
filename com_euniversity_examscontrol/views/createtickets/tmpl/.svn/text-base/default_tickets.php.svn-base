@@ -1,0 +1,78 @@
+<?php defined('_JEXEC') or die; ?>
+<?php $i = 1; ?>
+<div id="printForm">
+    <?php foreach ($this->items1 as $key => $q1): ?>
+    <table style="width: 100%;" cellspacing="0" cellpadding="0" border=1>
+        <tr>
+            <td style="width: 50%;">
+                <strong>Ф.И.О.</strong>
+                <underline>
+                    <div></div>
+                </underline>
+            </td>
+            <td>
+                <strong>Индивидуальный номер: </strong>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <table style="width: 100%;" cellspacing="0" cellpadding="0" border=1>
+        <tr>
+            <td colspan="2"><h3>Зимняя сессия</h3></td>
+        </tr>
+        <tr>
+            <td><strong>Учебный
+                год: </strong><?php echo '20' . substr(JRequest::getString('sYear'), 0, 2) . ' - 20' . substr(JRequest::getString('sYear'), -2);?>
+            </td>
+            <td><strong>Семестр: </strong><?php echo JRequest::getInt('sSemestr');?></td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Факультет: </strong><?php echo $this->facultets[JRequest::getString('sFacultet')]['description'];?>
+            </td>
+            <td>
+                <strong>Специальность: </strong><?php echo $this->specs[JRequest::getString('sSpec')]['code'] . ' :: ' . $this->specs[JRequest::getString('sSpec')]['description'];?>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Отделение: </strong><?php echo $this->langs[JRequest::getString('sLang')]['description'];?>
+            </td>
+            <td><strong>Форма: </strong><?php echo $this->forms[JRequest::getString('sForm')]['description'];?></td>
+        </tr>
+        <tr>
+            <td><strong>Протокол: </strong>№<?php echo JRequest::getInt('iProtocol');?>
+                от <?php echo JRequest::getString('iProtocolDate');?></td>
+            <td><strong>Вопросник: </strong><?php echo JRequest::getInt('rQuestionnarie');?></td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Дисциплина: </strong><?php echo $this->disciplines[JRequest::getString('sDiscipline')]['description'];?>
+            </td>
+            <td><strong>Преподаватель: </strong></td>
+        </tr>
+        <tr>
+            <td><strong>Кол-во: </strong></td>
+            <td><strong>Подпись: </strong></td>
+        </tr>
+    </table>
+    <p style="text-align: center; width: 100%">
+    <h3>Протокол №<?php echo JRequest::getInt('iProtocol');?> от <?php echo JRequest::getString('iProtocolDate');?>
+        ::
+        Вопросник №<?php echo JRequest::getInt('rQuestionnarie');?></h3>
+    </p>
+    <table style="width: 100%;" cellspacing="0" cellpadding="0" border=1>
+        <tr>
+            <td style="width: 50px; text-align: center;">
+                <strong>Код студента:</strong>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+    <p><strong>1. </strong><?php echo $q1->question;?></p>
+    <p><strong>2. </strong><?php echo $this->items2[$key]->question;?></p>
+    <p><strong>3. </strong><?php echo $this->items3[$key]->question;?></p>
+    <div class="pagebreak"></div>
+    <?php endforeach; ?>
+</div>
+

@@ -1,0 +1,45 @@
+<?php defined('_JEXEC') or die; ?>
+<?php $i = 1; ?>
+<form class="box" action="index.php" method="post">
+    <h3 class="module-title"><a href="index.php?option=com_euniversity_examscontrol&view=createtickets&date=<?php echo JRequest::getString('date', JFactory::getDate()->toFormat('%Y-%m-%d'));?>">Назначение
+        контроля</a> :: Билеты</h3>
+    <p>
+        <label for="xls" style="font-weight: bold;">Вопросник:</label>
+        <input id="xls" type="file" name="questions"/>
+        <label for="xls_num" style="font-weight: bold;">Количество:</label>
+        <input id="xls_num" type="input" name="xls_num" value="<?php echo count($this->listStudents);?>"/>
+        <button>Сформировать</button>
+    </p>
+    <table class="zebra">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Дата</th>
+            <th>Специальность</th>
+            <th>Язык</th>
+            <th>Семестр</th>
+            <th>ФИО</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->listStudents as $student): ?>
+        <tr>
+            <td><?php echo $i++?></td>
+            <td><?php echo $student->date . ' ' . $student->stime;?></td>
+            <td><?php echo '[' . $student->spec_code . '] ' . $student->spec_name;?></td>
+            <td><?php echo $student->lang_name;?></td>
+            <td><?php echo $student->semestr;?></td>
+            <td><?php echo $student->description;?></td>
+        </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    <p>
+        <button>Сформировать</button>
+    </p>
+    <input type="hidden" name="option" value="com_euniversity_examscontrol">
+    <input type="hidden" name="task" value="manage.createtickets"/>
+    <input type="hidden" name="discipline" value="<?php echo JRequest::getString('discipline');?>"/>
+    <?php echo JHtml::_('form.token'); ?>
+</form>
+

@@ -1,0 +1,11 @@
+<?php
+defined('_JEXEC') or die;
+jimport('joomla.application.component.controller');
+
+class eUniversityExamsControlController extends JController
+{
+    public function display()
+    {
+        parent::display(true);
+    }
+}
